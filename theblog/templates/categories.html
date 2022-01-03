@@ -1,10 +1,10 @@
 {% include 'base.html' %}{% block content %}
-<h2>Posts</h2>
-{% for post in object_list %}
+<h2>{{ cats }} Category</h2>
+{% if category_posts %} {% for post in category_posts %}
 <ul class="list-group">
   <li class="list-group-item">
     <a href="{% url 'articleDetail' post.pk %}">{{ post.title }}</a>
-    {{post.category}}
+    {{post.author}}
     <br />
     {{ post.body|slice:":200" }} {% if user.is_authenticated %}
     <small><a href="{% url 'update_post' post.pk %}">(Edit)</a></small>
@@ -14,4 +14,4 @@
   <br /><br />
   {% endfor %}
 </ul>
-{% endblock %}
+{% else %} No Posts are made under This Category Yet {% endif %} {% endblock %}

@@ -19,6 +19,10 @@ class ArticleDetailView(DetailView):
     model = Post
     template_name = 'articleDetail.html'
 
+def CategoryView(request, cats):
+    category_posts = Post.objects.filter(category=cats)
+    return render(request, 'categories.html', {'cats': cats, 'category_posts': category_posts})
+
 class AddPostView(CreateView):
     model = Post
     form_class = PostForm
